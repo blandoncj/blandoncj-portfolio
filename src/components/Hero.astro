@@ -1,0 +1,89 @@
+---
+// Hero.astro
+import { profile } from '../data/profile.ts';
+import { socials } from '../data/socials.ts';
+import * as Icons from 'lucide-astro';
+import { FileText, ChevronDown } from 'lucide-astro';
+---
+<section id="about" class="min-h-screen snap-start snap-always flex items-center justify-between px-8 py-20 relative">
+  <div id="about-description" class="max-w-2xl flex flex-col gap-6">
+    <h1 class="font-bold text-6xl md:text-7xl bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      {profile.name}
+    </h1>
+    
+    <div class="flex flex-wrap gap-3 text-gray-400">
+      {profile.roles.map((role, index) => (
+        <>
+          <span class="font-medium hover:text-white transition-colors duration-300">
+            {role}
+          </span>
+          {index < profile.roles.length - 1 && <span class="text-gray-600">•</span>}
+        </>
+      ))}
+    </div>
+    
+    <p class="text-lg text-gray-300 leading-relaxed">{profile.description}</p>
+    
+    <div class="flex items-center gap-6 pt-2">
+      <a 
+        href="/cv.pdf" 
+        download 
+        class="flex items-center gap-2 px-4 py-2 border border-white/30 rounded-lg hover:border-white hover:bg-white/5 transition-all duration-300 group"
+      >
+        <FileText size={18} class="group-hover:scale-110 transition-transform duration-300" />
+        <span class="text-sm font-medium">CV</span>
+      </a>
+      
+      {socials.map((s) => {
+        const IconComponent = Icons[s.icon as keyof typeof Icons];
+        return (
+          <a 
+            href={s.url} 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.name}
+            class="text-gray-400 hover:text-white transition-colors duration-300"
+          >
+            <IconComponent size={20} />
+          </a>
+        );
+      })}
+    </div>
+  </div>
+  
+  <div class="hidden lg:block relative">
+    <div class="relative w-80 h-80">
+      <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+      <img 
+        src={profile.avatar} 
+        alt={profile.name} 
+        class="relative w-full h-full object-cover rounded-full border-4 border-white/20 shadow-2xl"
+      >
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <a 
+    href="#skills"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-400 hover:text-white transition-all duration-300 animate-bounce cursor-pointer"
+    aria-label="Scroll to next section"
+  >
+    <ChevronDown size={32} />
+  </a>
+</section>
+
+<!-- <script> -->
+<!--   // Scroll suave para todos los enlaces con href="#..." -->
+<!--   document.querySelectorAll('a[href^="#"]').forEach(anchor => { -->
+<!--     anchor.addEventListener('click', function (e) { -->
+<!--       e.preventDefault(); -->
+<!--       const target = document.querySelector(this.getAttribute('href')); -->
+<!--       if (target) { -->
+<!--         target.scrollIntoView({ -->
+<!--           behavior: 'smooth', -->
+<!--           block: 'start' -->
+<!--         }); -->
+<!--       } -->
+<!--     }); -->
+<!--   }); -->
+<!-- </script> -->
