@@ -2,6 +2,8 @@
 
 A modern, responsive personal portfolio built with Astro and Tailwind CSS showcasing projects, skills, experience, contact info and education.
 
+![Portfolio Preview](./docs/preview.png)
+
 ## 🚀 Live Demo
 
 [View Live Portfolio](https://blandoncj-portfolio.vercel.app)
