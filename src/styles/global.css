@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@import "@fontsource/inter/300.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@theme {
+  --font-grotesk: "Space Grotesk", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --color-background: #000;
+  --color-text: #fff;
+  --color-text-secondary: #ccc;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.bordered-animated {
+  position: relative;
+  padding: 1rem;
+  border-radius: 9999px;
+}
+
+.bordered-animated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px dashed #ffffff55;
+  border-radius: 9999px;
+  animation: rotate-border 40s linear infinite;
+}
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

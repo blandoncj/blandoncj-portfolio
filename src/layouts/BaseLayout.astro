@@ -1,0 +1,21 @@
+---
+const { title = "Jacobo - Portfolio", description = "Software Egineer | FullStack Developer" } = Astro.props;
+import DotsNav from '../components/DotsNav.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{description}">
+    <title>{title}</title>
+    <link href="/src/styles/global.css" rel="stylesheet">
+  </head>
+  <body class="snap-y snap-mandatory h-screen overflow-y-scroll">
+    <main class="w-full max-w-5xl mx-auto px-4">
+      <DotsNav />
+      <slot />
+    </main> 
+  </body>
+</html>
