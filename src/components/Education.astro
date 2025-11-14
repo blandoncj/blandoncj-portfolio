@@ -1,7 +1,8 @@
 ---
-import { GraduationCap, Calendar, Award } from "lucide-astro";
+import { GraduationCap, Calendar, Award, ExternalLink } from "lucide-astro";
 
 import { education } from "../data/education.ts";
+import { certificates, moreCertificatesUrl } from "../data/certificates.ts";
 ---
 
 <section
@@ -94,15 +95,102 @@ import { education } from "../data/education.ts";
             }
         </div>
 
-        <div class="mt-16 text-center">
-            <div
-                class="h-px w-32 bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-6"
-            >
+        <div class="mt-12">
+            <h3 class="text-3xl font-bold text-white mb-20">Courses (+15)</h3>
+
+            <div class="space-y-6 mt-8">
+                {
+                    certificates.map((cert) => (
+                        <div class="group relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all duration-500">
+                                <div
+                                    class={`grid ${cert.image ? "md:grid-cols-2" : "md:grid-cols-1"} gap-0`}
+                                >
+                                    {cert.image && (
+                                        <div class="relative h-56 md:h-full bg-gradient-to-br from-purple-500/10 to-blue-500/10 flex items-center justify-center p-6">
+                                            <img
+                                                src={cert.image}
+                                                alt={cert.title}
+                                                class="max-h-44 md:max-h-56 w-auto object-contain rounded-lg bg-white/5 p-2"
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div class="p-6 md:p-8 flex flex-col justify-between">
+                                        <div>
+                                            <h4 class="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 group-hover:bg-clip-text transition-all duration-300">
+                                                {cert.title}
+                                            </h4>
+                                            <p class="text-sm text-gray-400 mb-4">
+                                                Emitido por{" "}
+                                                <span class="font-medium text-gray-200">
+                                                    {cert.issuer}
+                                                </span>
+                                            </p>
+                                        </div>
+
+                                        <div class="flex flex-wrap items-center gap-3">
+                                            <a
+                                                href={cert.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-lg hover:from-purple-500/30 hover:to-blue-500/30 hover:border-purple-500/50 transition-all duration-300"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="text-white"
+                                                >
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line
+                                                        x1="10"
+                                                        y1="14"
+                                                        x2="21"
+                                                        y2="3"
+                                                    />
+                                                </svg>
+                                                <span class="text-sm font-medium">
+                                                    View certificate
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
             </div>
-            <p class="text-gray-500 text-sm">
-                Committed to continuous learning and staying current with
-                emerging technologies
-            </p>
+
+            <div class="mt-16 text-center">
+                <div
+                    class="h-px w-32 bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-6"
+                >
+                </div>
+                <a
+                    href="https://platzi.com/p/blandev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 group"
+                >
+                    <span class="text-sm">View more certificates on Platzi</span
+                    >
+                    <ExternalLink
+                        size={16}
+                        class="group-hover:translate-x-1 transition-transform duration-300"
+                    />
+                </a>
+            </div>
         </div>
     </div>
 </section>
