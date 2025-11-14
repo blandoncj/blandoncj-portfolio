@@ -7,9 +7,12 @@ import { FileText, ChevronDown } from "lucide-astro";
 
 <section
   id="about"
-  class="min-h-screen snap-start snap-always flex items-center justify-between px-8 py-20 relative"
+  class="min-h-screen snap-start snap-always flex flex-col lg:flex-row items-start lg:items-center justify-between px-8 py-20 relative"
 >
-  <div id="about-description" class="max-w-2xl flex flex-col gap-6">
+  <div
+    id="about-description"
+    class="max-w-2xl flex flex-col gap-6 order-2 lg:order-1 text-left"
+  >
     <h1
       class="font-bold text-6xl md:text-7xl bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
     >
@@ -65,8 +68,10 @@ import { FileText, ChevronDown } from "lucide-astro";
     </div>
   </div>
 
-  <div class="hidden lg:block relative">
-    <div class="relative w-80 h-80">
+  <div
+    class="relative flex justify-start mb-6 lg:mb-0 lg:ml-8 order-1 lg:order-2"
+  >
+    <div class="relative w-40 h-40 md:w-56 md:h-56 lg:w-80 lg:h-80">
       <div
         class="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"
       >
