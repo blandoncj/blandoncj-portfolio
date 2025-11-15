@@ -11,8 +11,8 @@ export interface EducationItem {
 
 export const education: EducationItem[] = [
     {
-        institution: "Institución Universitaria EAM",
-        degree: "Ingeniería de Software",
+        institution: "EAM University Institution",
+        degree: "Software Engineering",
         type: "Professional",
         period: "2022 - 2026",
         status: "In Progress",
@@ -28,8 +28,8 @@ export const education: EducationItem[] = [
         gradient: "from-purple-500/20 to-blue-500/20",
     },
     {
-        institution: "Institución Universitaria EAM",
-        degree: "Tecnología en Desarrollo de Software",
+        institution: "EAM University Institution",
+        degree: "Software Development Technology",
         type: "Technologist",
         period: "2022 - 2025",
         status: "Graduated · Nov, 2025",
