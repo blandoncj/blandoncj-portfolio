@@ -19,7 +19,7 @@ import { experience } from "../data/experience.ts";
     </div>
 
     {
-      experience.map((exp) => (
+      experience.map((exp, index) => (
         <div class="relative group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-10 hover:border-white/30 transition-all duration-500 mb-12">
           <div class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
           <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
@@ -35,7 +35,7 @@ import { experience } from "../data/experience.ts";
             <div class="flex items-center gap-2">
               <Calendar size={16} />
               <span>
-                {exp.period} · {exp.duration}
+                {exp.period} · <span data-duration data-start={exp.startDate.getTime()} data-end={exp.endDate?.getTime() || ''}>Loading...</span>
               </span>
             </div>
           </div>
@@ -84,6 +84,45 @@ import { experience } from "../data/experience.ts";
     </svg>
   </a>
 </section>
+
+<script>
+  function calculateDuration(startDate: Date, endDate: Date | null): string {
+    const end = endDate || new Date();
+
+    const months = (end.getFullYear() - startDate.getFullYear()) * 12
+      + (end.getMonth() - startDate.getMonth());
+
+    if (months < 1) {
+      return 'Less than a month';
+    }
+
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+
+    if (years === 0) {
+      return `${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+    } else if (remainingMonths === 0) {
+      return `${years} ${years === 1 ? 'year' : 'years'}`;
+    } else {
+      return `${years} ${years === 1 ? 'year' : 'years'} and ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+    }
+  }
+
+  // Calculate durations on the client side
+  document.addEventListener('DOMContentLoaded', () => {
+    const durationElements = document.querySelectorAll('[data-duration]');
+
+    durationElements.forEach((element) => {
+      const startTime = parseInt(element.getAttribute('data-start') || '0');
+      const endTime = element.getAttribute('data-end');
+
+      const startDate = new Date(startTime);
+      const endDate = endTime ? new Date(parseInt(endTime)) : null;
+
+      element.textContent = calculateDuration(startDate, endDate);
+    });
+  });
+</script>
 
 <style>
   @keyframes fadeInUp {
